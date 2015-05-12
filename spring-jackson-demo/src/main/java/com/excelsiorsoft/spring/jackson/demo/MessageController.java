@@ -46,6 +46,7 @@ public class MessageController {
 		return messageService.getAll();
 	}
 
+	//@JsonView(View.Summary.class)
 	@RequestMapping("/{id}")
 	public Message getMessage(@PathVariable Long id) {
 		return this.messageService.get(id);

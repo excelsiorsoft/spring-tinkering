@@ -8,5 +8,6 @@ Some URL to try:
  * Get all messages with Json View (JSON): http://localhost:8282/.json or curl -X GET -H "Cache-Control: no-cache" http://localhost:8282/.json
  * Get one Message (XML): http://localhost:8282/1.xml or curl -X GET -H "Cache-Control: no-cache" http://localhost:8282/1.xml
  * Get all messages with Json View (XML): http://localhost:8282/.xml or curl -X GET -H "Cache-Control: no-cache"  http://localhost:8282/.xml
- * Get messages with recipients in XML: http://localhost:8282/with-recipients.xml 
+ * Get messages with recipients in XML: http://localhost:8282/with-recipients.xml or curl -X GET -H "Cache-Control: no-cache" http://localhost:8282/with-recipients.xml
+ * Get messages with recipients in Json http://localhost:8282/with-recipients.json or curl -X GET -H "Cache-Control: no-cache"  http://localhost:8282/with-recipients.json
 
