@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package demo;
+package com.excelsiorsoft.spring.jackson.demo;
 
 import java.util.List;
 
+import com.excelsiorsoft.spring.jackson.demo.model.Message;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import org.springframework.beans.factory.annotation.Autowired;

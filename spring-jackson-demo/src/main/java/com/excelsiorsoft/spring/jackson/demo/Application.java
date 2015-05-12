@@ -1,4 +1,4 @@
-package demo;
+package com.excelsiorsoft.spring.jackson.demo;
 
 import java.text.SimpleDateFormat;
 

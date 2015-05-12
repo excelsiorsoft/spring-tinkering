@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package demo;
+package com.excelsiorsoft.spring.jackson.demo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.excelsiorsoft.spring.jackson.demo.model.Message;
+import com.excelsiorsoft.spring.jackson.demo.model.User;
 
 @Service
 public class MessageService {

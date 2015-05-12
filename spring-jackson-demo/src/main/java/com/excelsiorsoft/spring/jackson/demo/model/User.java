@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-package demo;
+package com.excelsiorsoft.spring.jackson.demo.model;
 
+import com.excelsiorsoft.spring.jackson.demo.View;
+import com.excelsiorsoft.spring.jackson.demo.View.Summary;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class User {

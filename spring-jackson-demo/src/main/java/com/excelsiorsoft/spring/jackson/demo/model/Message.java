@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
-package demo;
+package com.excelsiorsoft.spring.jackson.demo.model;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import com.excelsiorsoft.spring.jackson.demo.View;
+import com.excelsiorsoft.spring.jackson.demo.View.Summary;
+import com.excelsiorsoft.spring.jackson.demo.View.SummaryWithRecipients;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Message {

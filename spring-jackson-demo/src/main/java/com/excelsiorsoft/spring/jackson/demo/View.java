@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package demo;
+package com.excelsiorsoft.spring.jackson.demo;
 
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;
+public class View {
 
-@ControllerAdvice
-public class JsonpAdvice extends AbstractJsonpResponseBodyAdvice {
+	public interface Summary {}
+	public interface SummaryWithRecipients extends Summary {}
 
-	public JsonpAdvice() {
-		super("jsonp");
-	}
 }
