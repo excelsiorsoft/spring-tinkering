@@ -2,10 +2,13 @@ package demo;
 
 
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.transport.http.HttpComponentsMessageSender;
@@ -37,5 +40,13 @@ public class ConsumeCurrencyConfig {
 		marshaller.setContextPath(marshallerContextPath);
 		return marshaller;
 	}
+	
+	@Configuration
+	 static class DatabaseConfig {
+	     @Bean @Lazy
+	     DataSource dataSource() {
+	         return null;
+	     }
+	 }
 	
 }
