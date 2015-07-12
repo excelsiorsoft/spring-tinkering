@@ -17,6 +17,7 @@ local.properties
 .loadpath
 Ideas*.docx
 Servers/
+*.class
 
 # External tool builders
 .externalToolBuilders/
