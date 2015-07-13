@@ -22,12 +22,14 @@ public class CurrencyClient extends WebServiceGatewaySupport {
         conversionRate.setFromCurrency(fromCurrency);
         conversionRate.setToCurrency(toCurrency);
  
-        ConversionRateResponse response = (ConversionRateResponse) getWebServiceTemplate().marshalSendAndReceive(conversionRate, new WebServiceMessageCallback() {
+        ConversionRateResponse response = (ConversionRateResponse) getWebServiceTemplate().marshalSendAndReceive(conversionRate, message ->  ((SoapMessage)message).setSoapAction(soapAction)
+        		
+        		/*new WebServiceMessageCallback() {
 
             public void doWithMessage(WebServiceMessage message) {
                 ((SoapMessage)message).setSoapAction(soapAction);
             }
-        });
+        }*/);
  
         return response.getConversionRateResult();
     }
