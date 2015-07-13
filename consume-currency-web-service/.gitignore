@@ -16,6 +16,8 @@ local.properties
 .settings/
 .loadpath
 Ideas*.docx
+Servers/
+*.class
 
 # External tool builders
 .externalToolBuilders/
@@ -217,3 +219,4 @@ pip-log.txt
 
 #MS Word
 *.wbk
+/target/
