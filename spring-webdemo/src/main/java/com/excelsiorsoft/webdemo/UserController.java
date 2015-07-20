@@ -17,18 +17,22 @@ public class UserController {
     @Autowired
     private UserRepository users;
 
+    //localhost:8383/user/test
     @RequestMapping("test")
     public String test() {
         log.info("Test");
         return "OK";
     }
 
+    //localhost:8383/user/user?id=1
     @RequestMapping("user")
     public User getUser(@RequestParam("id") long id) {
         log.info("Get user");
         return users.getUser(id);
     }
 
+    
+    //localhost:8383/user/users?ids=1
     @RequestMapping("users")
     public List<User> getUsers(@RequestParam("ids") long[] ids) {
         log.info("Get users");
