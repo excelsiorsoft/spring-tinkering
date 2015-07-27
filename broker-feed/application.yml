@@ -1,0 +1,26 @@
+server:
+    port: 8384
+    
+spring:
+    application:
+        name: broker-feed
+    main:
+        show-banner: false
+
+    jpa:
+        show-sql: true
+        database: POSTGRESQL
+        properties: 
+            hibernate:
+                temp: 
+                    use_jdbc_metadata_defaults: false
+
+    datasource:
+        platform: postgres
+        driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://10.101.7.213:5432/web_db
+        username: brokerservice
+        password: Brokerserv!ce836!
+        
+        
+
