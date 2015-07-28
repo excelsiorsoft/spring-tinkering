@@ -19,6 +19,7 @@ case $1 in
     ;;
     stop)
         if [ -f $PID_PATH_NAME ]; then
+           
             PID=$(cat $PID_PATH_NAME);
             echo "$SERVICE_NAME stoping ..."
             kill $PID;

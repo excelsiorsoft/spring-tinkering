@@ -27,13 +27,15 @@ public class BrokerDeserializer extends JsonDeserializer<Broker> {
 		
 		ObjectCodec oc = jsonParser.getCodec();
         JsonNode node = oc.readTree(jsonParser);
-       
+        
+        logger.info("About to deserialize a broker records {}", node); 
+        
+        Assert.notNull(node.get(SFID), SFID +" must be present");
+        Assert.notNull(node.get(ACTION), ACTION + "must be present");
+
         final String sfid = node.get(SFID).asText();
         final String action = node.get(ACTION).asText();
-        
-        Assert.notNull(sfid, "Salesforce Id must be present");
-        Assert.notNull(action, "Action must be present");
-        
+
         final String birthdate = (node.get(BIRTHDATE).getClass().isInstance(NullNode.class))?node.get(BIRTHDATE).asText():"1970-01-01";
 		
         Broker broker = new Broker();

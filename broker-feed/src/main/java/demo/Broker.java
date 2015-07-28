@@ -325,5 +325,30 @@ public class Broker implements Serializable {
 		this.action = action;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Broker [id=").append(id).append(", action=")
+				.append(action).append(", accountName=").append(accountName)
+				.append(", firstName=").append(firstName).append(", lastName=")
+				.append(lastName).append(", title=").append(title)
+				.append(", ssn=").append(ssn).append(", phone=").append(phone)
+				.append(", mobile_phone=").append(mobile_phone)
+				.append(", fax=").append(fax).append(", email=").append(email)
+				.append(", mailingStreet=").append(mailingStreet)
+				.append(", mailingCity=").append(mailingCity)
+				.append(", mailingState=").append(mailingState)
+				.append(", mailingPostalCode=").append(mailingPostalCode)
+				.append(", mailingCountry=").append(mailingCountry)
+				.append(", brokerNumber=").append(brokerNumber)
+				.append(", npn=").append(npn).append(", ga=").append(ga)
+				.append(", gaNumber=").append(gaNumber).append(", birthdate=")
+				.append(birthdate).append(", status=").append(status)
+				.append(", legalEntity=").append(legalEntity)
+				.append(", saleforceId=").append(saleforceId)
+				.append(", deleted=").append(deleted).append("]");
+		return builder.toString();
+	}
+
 	
 }

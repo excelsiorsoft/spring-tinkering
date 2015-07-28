@@ -21,7 +21,8 @@ public class BrokerFeedController {
 /*
 	 
 	 [{
-  "id": 12345,
+  "SFID": 587,
+  "action": "i",
   "accountName": null,
   "firstName": null,
   "lastName": null,
@@ -46,7 +47,8 @@ public class BrokerFeedController {
 }, 
 
 {
-  "id": 67894,
+  "SFID": 767894,
+  "action": "i",
   "accountName": null,
   "firstName": null,
   "lastName": null,
@@ -69,8 +71,7 @@ public class BrokerFeedController {
   "status": null,
   "legalEntity": null
 }
-]
-	 
+] 
 */
 	
 	@RequestMapping(value = "/process", method = RequestMethod.POST, consumes="application/json")
