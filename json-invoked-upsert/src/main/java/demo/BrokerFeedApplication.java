@@ -24,10 +24,10 @@ public class BrokerFeedApplication {
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(BrokerFeedApplication.class);
 		app.addListeners(new ApplicationPidFileWriter());
-		app.run(BrokerFeedApplication.class, args);
+		app.run(/*BrokerFeedApplication.class,*/ args);
 	}
 	
-	@Bean
+	/*@Bean
 	public ObjectMapper jacksonObjectMapper() {
 	ObjectMapper objectMapper = new ObjectMapper();
 	objectMapper.setSerializationInclusion(Include.NON_NULL);
@@ -44,5 +44,5 @@ public class BrokerFeedApplication {
 	jacksonConverter.setObjectMapper(jacksonObjectMapper());
 	return jacksonConverter;
 	}
-
+*/
 }
