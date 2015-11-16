@@ -5,7 +5,6 @@
 *.pydevproject
 .project
 .metadata
-# bin/
 tmp/
 *.tmp
 *.bak
@@ -48,7 +47,7 @@ Ideas*.docx
 [Rr]elease/
 x64/
 build/
-[Bb]in/
+#[Bb]in/
 [Oo]bj/
 
 # MSTest test Results

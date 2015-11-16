@@ -1,0 +1,45 @@
+<wsdl:definitions targetNamespace="http://hubc.ee.sim.dsh.cms.hhs.gov"
+	xmlns:hubc="http://hubc.ee.sim.dsh.cms.hhs.gov" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://hubc.ee.sim.dsh.cms.hhs.gov"
+			xmlns:hubc="http://hubc.ee.sim.dsh.cms.hhs.gov" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:include
+				schemaLocation="https://test2.hub.cms.gov:8443/ssg/wsdl/HubConnectivityService?serviceoid=afcc099589f9925a0000000005d90001&amp;servdocoid=bac394d50fde3f60000000000d3180e4"></xsd:include>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="HubConnectivityResponse">
+		<wsdl:part element="hubc:HubConnectivityResponse" name="body"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="HubConnectivityRequest">
+		<wsdl:part element="hubc:HubConnectivityRequest" name="body"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="HubConnectivityPortType">
+		<wsdl:operation name="HubConnectivityCheck">
+			<wsdl:input message="hubc:HubConnectivityRequest"></wsdl:input>
+			<wsdl:output message="hubc:HubConnectivityResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="HubConnectivitySoapBinding" type="hubc:HubConnectivityPortType">
+		<soap12:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="HubConnectivityCheck">
+			<soap12:operation soapAction="" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="HubConnectivityService">
+		<wsdl:documentation>HIX DSH Hub Connectivity Service
+		</wsdl:documentation>
+		<wsdl:port binding="hubc:HubConnectivitySoapBinding" name="HubConnectivityPortType">
+			<soap12:address
+				location="https://test2.hub.cms.gov:8443/HubConnectivityService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
