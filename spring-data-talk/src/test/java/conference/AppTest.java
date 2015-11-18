@@ -80,7 +80,7 @@ public class AppTest {
 	@Test
 	public void testFindAll(){
 		LOG.info("********************* ALL SPEAKERS ************************");
-		Iterable<Speaker> allSpeakers = speakerRepository.getAllSpeakers();
+		Iterable<Speaker> allSpeakers = speakerRepository.findAll()/*getAllSpeakers()*/;
 		
 		for(Speaker speaker: allSpeakers) {
 			LOG.info(speaker.getName());
@@ -91,7 +91,7 @@ public class AppTest {
 	}	
 	
 	
-	public void FindByName() {
+	/*public void FindByName() {
 		LOG.info("********************* All Talks of Borisov Evgeny ************************");
 		
 		Speaker speaker = speakerRepository.findByName("mr Evgeny Borisov").get(0);
@@ -100,7 +100,7 @@ public class AppTest {
 			LOG.info("talk = " + talk);
 		}
 		LOG.info("***************************************************************************");
-	}
+	}*/
 	
 	
 	@After

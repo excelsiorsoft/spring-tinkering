@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,9 +17,9 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public class SpeakerRepository {
+public /*class*/ interface SpeakerRepository extends CrudRepository<Speaker, Long>{
 	
-	@PersistenceContext
+	/*@PersistenceContext
 	private EntityManager em;
 	
 	@SuppressWarnings("unchecked")
@@ -40,5 +41,5 @@ public class SpeakerRepository {
 	public long count() {return (Long) em.createQuery("select count(s.name) from Speaker s").getSingleResult();}
 	
 	public void deleteAll() {em.createQuery("delete from Speaker").executeUpdate();}
-
+*/
 }
