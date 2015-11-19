@@ -112,11 +112,6 @@ public class AppTest {
 		List<Speaker> speakers = speakerRepository.findПожалуйстаByNameLike("%Martin%");
 		speakers.forEach(speaker->LOG.info(speaker.toString()));
 		
-		
-		/*Set<Talk> talks = speaker.getTalks();
-		for(Talk talk: talks) {
-			LOG.info("talk = " + talk);
-		}*/
 		LOG.info("***************************************************************************");
 	}	
 	
