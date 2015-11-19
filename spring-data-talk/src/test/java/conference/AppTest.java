@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -80,7 +81,7 @@ public class AppTest {
 	@Test
 	public void testFindAll(){
 		LOG.info("********************* ALL SPEAKERS ************************");
-		Iterable<Speaker> allSpeakers = speakerRepository.findAll()/*getAllSpeakers()*/;
+		Iterable<Speaker> allSpeakers = speakerRepository.findAll(new Sort(Sort.Direction.ASC,"name"))/*getAllSpeakers()*/;
 		
 		for(Speaker speaker: allSpeakers) {
 			LOG.info(speaker.getName());
