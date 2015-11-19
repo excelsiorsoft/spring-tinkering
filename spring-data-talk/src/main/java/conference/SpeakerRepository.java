@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public /*class*/ interface SpeakerRepository extends CrudRepository<Speaker, Long>{
+public /*class*/ interface SpeakerRepository extends /*CrudRepository*/JpaRepository<Speaker, Long>{
 	
 	/*@PersistenceContext
 	private EntityManager em;
