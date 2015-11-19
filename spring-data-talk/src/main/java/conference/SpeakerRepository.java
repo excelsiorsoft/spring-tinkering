@@ -19,6 +19,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public /*class*/ interface SpeakerRepository extends /*CrudRepository*/JpaRepository<Speaker, Long>{
+
+	Speaker findByName(String string);
 	
 	/*@PersistenceContext
 	private EntityManager em;

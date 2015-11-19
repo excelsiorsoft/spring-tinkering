@@ -91,17 +91,17 @@ public class AppTest {
 		
 	}	
 	
-	
-	/*public void FindByName() {
+	@Test
+	public void testFindByName() {
 		LOG.info("********************* All Talks of Borisov Evgeny ************************");
 		
-		Speaker speaker = speakerRepository.findByName("mr Evgeny Borisov").get(0);
+		Speaker speaker = speakerRepository.findByName("mr Evgeny Borisov");
 		Set<Talk> talks = speaker.getTalks();
 		for(Talk talk: talks) {
 			LOG.info("talk = " + talk);
 		}
 		LOG.info("***************************************************************************");
-	}*/
+	}
 	
 	
 	@After
