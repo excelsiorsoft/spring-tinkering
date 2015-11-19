@@ -24,6 +24,8 @@ public /*class*/ interface SpeakerRepository extends /*CrudRepository*/JpaReposi
 	
 	List<Speaker> findПожалуйстаByNameLike(String byNameLike);
 	
+	List<Speaker> findБудьЛаскаByNameEndingWith(String suffix);
+	
 	/*@PersistenceContext
 	private EntityManager em;
 	

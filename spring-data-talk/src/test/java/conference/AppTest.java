@@ -107,13 +107,24 @@ public class AppTest {
 	
 	@Test
 	public void testFindByNameLike() {
-		LOG.info("********************* All Talks of Borisov Evgeny ************************");
+		LOG.info("********************* All Martins ************************");
 		
 		List<Speaker> speakers = speakerRepository.findПожалуйстаByNameLike("%Martin%");
 		speakers.forEach(speaker->LOG.info(speaker.toString()));
 		
 		LOG.info("***************************************************************************");
-	}	
+	}
+	
+
+	@Test
+	public void testFindByNameSuffix() {
+		LOG.info("********************* All Russian Speaking Speakers ************************");
+		
+		List<Speaker> speakers = speakerRepository.findБудьЛаскаByNameEndingWith("ov");
+		speakers.forEach(speaker->LOG.info(speaker.toString()));
+		
+		LOG.info("***************************************************************************");
+	}
 	
 	
 	@After
