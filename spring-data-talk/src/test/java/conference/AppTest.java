@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -102,6 +103,22 @@ public class AppTest {
 		}
 		LOG.info("***************************************************************************");
 	}
+	
+	
+	@Test
+	public void testFindByNameLike() {
+		LOG.info("********************* All Talks of Borisov Evgeny ************************");
+		
+		List<Speaker> speakers = speakerRepository.findПожалуйстаByNameLike("%Martin%");
+		speakers.forEach(speaker->LOG.info(speaker.toString()));
+		
+		
+		/*Set<Talk> talks = speaker.getTalks();
+		for(Talk talk: talks) {
+			LOG.info("talk = " + talk);
+		}*/
+		LOG.info("***************************************************************************");
+	}	
 	
 	
 	@After
