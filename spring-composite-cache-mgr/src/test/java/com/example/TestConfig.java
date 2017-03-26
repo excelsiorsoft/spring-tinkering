@@ -23,9 +23,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import redis.clients.jedis.JedisPoolConfig;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @ComponentScan(basePackageClasses = TestConfig.class)
@@ -48,14 +50,14 @@ public class TestConfig implements CachingConfigurer {
         return new SimpleKeyGenerator();
     }
 
-     //need support in spring 4.1
+
     @Bean
     @Override
     public CacheResolver cacheResolver() {
         return new SimpleCacheResolver(cacheManager());
     }
 
-     //need support in spring 4.1
+
     @Bean
     @Override
     public CacheErrorHandler errorHandler() {
@@ -80,8 +82,8 @@ public class TestConfig implements CachingConfigurer {
     @Bean
     public JedisConnectionFactory connectionFactory() {
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
-        jedisConnectionFactory.setHostName("192.168.70.209");
-        jedisConnectionFactory.setPort(16379);
+        jedisConnectionFactory.setHostName("localhost");
+        jedisConnectionFactory.setPort(6379);
         jedisConnectionFactory.setTimeout(5000);
         jedisConnectionFactory.setPoolConfig(jedisPoolConfig());
         jedisConnectionFactory.setUsePool(true);
@@ -103,7 +105,10 @@ public class TestConfig implements CachingConfigurer {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory());
         Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
-        serializer.setObjectMapper(new ObjectMapper());
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+        serializer.setObjectMapper(objectMapper);
         redisTemplate.setKeySerializer(serializer);
         redisTemplate.setValueSerializer(serializer);
         redisTemplate.setHashKeySerializer(serializer);
