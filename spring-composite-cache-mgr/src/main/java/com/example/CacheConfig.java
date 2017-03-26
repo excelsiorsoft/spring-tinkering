@@ -31,10 +31,10 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
-@ComponentScan(basePackageClasses = TestConfig.class)
+@ComponentScan(basePackageClasses = CacheConfig.class)
 @EnableAspectJAutoProxy
 @EnableCaching
-public class TestConfig implements CachingConfigurer {
+public class CacheConfig implements CachingConfigurer {
 
 	@Value("${redis.hostname}")
 	private String redisHostName;
