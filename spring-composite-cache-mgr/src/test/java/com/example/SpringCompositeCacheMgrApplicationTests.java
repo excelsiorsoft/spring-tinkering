@@ -25,7 +25,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { CacheConfig.class })
+//@ContextConfiguration(classes = { CacheConfig.class })
 //@WebAppConfiguration
 @RunWith(SpringRunner.class)
 @SpringBootTest
