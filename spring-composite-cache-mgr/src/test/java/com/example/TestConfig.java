@@ -1,5 +1,6 @@
 package com.example;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.annotation.EnableCaching;
@@ -35,6 +36,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @EnableCaching
 public class TestConfig implements CachingConfigurer {
 
+	@Value("${redis.hostname}")
+	private String redisHostName;
+
+	@Value("${redis.port}")
+	private int redisPort;
+	
     @Bean
     @Override
     public CacheManager cacheManager() {
@@ -85,8 +92,8 @@ public class TestConfig implements CachingConfigurer {
     public JedisConnectionFactory connectionFactory(JedisPoolConfig jedisPoolConfig) {
         
     	JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
-        jedisConnectionFactory.setHostName("localhost");
-        jedisConnectionFactory.setPort(6379);
+        jedisConnectionFactory.setHostName(redisHostName/*"localhost"*/);
+        jedisConnectionFactory.setPort(redisPort/*6379*/);
         jedisConnectionFactory.setTimeout(5000);
         jedisConnectionFactory.setPoolConfig(jedisPoolConfig/*jedisPoolConfig()*/);
         jedisConnectionFactory.setUsePool(true);
@@ -105,7 +112,8 @@ public class TestConfig implements CachingConfigurer {
 
     @Bean
     public RedisTemplate<Object, Object> redisTemplate(JedisPoolConfig jedisPoolConfig) {
-        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+        
+    	RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory(jedisPoolConfig));
         Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
         
