@@ -59,6 +59,9 @@ public class SpringCompositeCacheMgrApplicationTests {
 
 	@Test
 	public void applicationContextShouldBeInitialized() {	
+		
+		Assert.assertNotNull("RedisProperties is undefined...", webApplicationContext.getBeansOfType(RedisProperties.class));
+		
 		Assert.assertNotNull(webApplicationContext);
 		for (String beanDefinitionNames : webApplicationContext.getBeanDefinitionNames()) {
 			Assert.assertNotNull(webApplicationContext.getBean(beanDefinitionNames));

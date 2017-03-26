@@ -1,6 +1,7 @@
 package com.example;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.annotation.EnableCaching;
@@ -34,13 +35,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ComponentScan(basePackageClasses = CacheConfig.class)
 @EnableAspectJAutoProxy
 @EnableCaching
+@EnableConfigurationProperties(RedisProperties.class)
 public class CacheConfig implements CachingConfigurer {
 
-	@Value("${redis.hostname}")
+	/*@Value("${cache.redis.hostname}")
 	private String redisHostName;
 
-	@Value("${redis.port}")
-	private int redisPort;
+	@Value("${cache.redis.port}")
+	private int redisPort;*/
+	
+	@Autowired 
+	private RedisProperties redisProperties;
 	
     @Bean
     @Override
@@ -89,11 +94,11 @@ public class CacheConfig implements CachingConfigurer {
     }
 
     @Bean
-    public JedisConnectionFactory connectionFactory(JedisPoolConfig jedisPoolConfig) {
+    public JedisConnectionFactory connectionFactory(JedisPoolConfig jedisPoolConfig, RedisProperties redisProperties) {
         
     	JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
-        jedisConnectionFactory.setHostName(redisHostName/*"localhost"*/);
-        jedisConnectionFactory.setPort(redisPort/*6379*/);
+        jedisConnectionFactory.setHostName(redisProperties.getHost()/*"localhost"*/);
+        jedisConnectionFactory.setPort(redisProperties.getPort()/*6379*/);
         jedisConnectionFactory.setTimeout(5000);
         jedisConnectionFactory.setPoolConfig(jedisPoolConfig/*jedisPoolConfig()*/);
         jedisConnectionFactory.setUsePool(true);
@@ -114,12 +119,13 @@ public class CacheConfig implements CachingConfigurer {
     public RedisTemplate<Object, Object> redisTemplate(JedisPoolConfig jedisPoolConfig) {
         
     	RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(connectionFactory(jedisPoolConfig));
+        redisTemplate.setConnectionFactory(connectionFactory(jedisPoolConfig, redisProperties));
         Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
         
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
         serializer.setObjectMapper(objectMapper);
+        
         redisTemplate.setKeySerializer(serializer);
         redisTemplate.setValueSerializer(serializer);
         redisTemplate.setHashKeySerializer(serializer);
