@@ -67,13 +67,17 @@ public class SpringCompositeCacheMgrApplicationTests {
 	
 	@Autowired
     StringRedisTemplate stringRedisTemplate;
-    @Autowired
+    
+	@Autowired
     RedisCacheService redisCacheService;
-    @Autowired
+    
+	@Autowired
     EhCacheService ehCacheService;
-    @Autowired
+    
+	@Autowired
     CacheManager ehCacheManager;
-    @Autowired
+    
+	@Autowired
     CacheManager redisCacheManager;
 
     @Test
