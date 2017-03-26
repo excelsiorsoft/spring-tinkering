@@ -1,5 +1,9 @@
 package com.example;
 
+import static com.example.SpringCompositeCacheMgrApplicationTests.DATETIME_FORMAT;
+import static com.example.SpringCompositeCacheMgrApplicationTests.REDIS_IDENTIFY_KEY;
+import static com.example.SpringCompositeCacheMgrApplicationTests.REDIS_KEY;
+
 import java.util.Date;
 
 import org.springframework.cache.annotation.CacheEvict;
@@ -20,21 +24,21 @@ public class RedisCacheService {
         return executeTime;
     }
 
-    @Cacheable(SpringCompositeCacheMgrApplicationTests.REDIS_KEY)
+    @Cacheable(REDIS_KEY)
     public String get() {
         executeTime++;
-        return SpringCompositeCacheMgrApplicationTests.DATETIME_FORMAT.format(new Date());
+        return DATETIME_FORMAT.format(new Date());
     }
 
-    @Cacheable(value = SpringCompositeCacheMgrApplicationTests.REDIS_IDENTIFY_KEY, key = "#identify")
+    @Cacheable(value = REDIS_IDENTIFY_KEY, key = "#identify")
     public String get(Long identify) {
         executeTime++;
-        return SpringCompositeCacheMgrApplicationTests.DATETIME_FORMAT.format(new Date()) + "&identify:" + identify;
+        return DATETIME_FORMAT.format(new Date()) + "&identify:" + identify;
     }
 
     @Caching(evict = {
-            @CacheEvict(SpringCompositeCacheMgrApplicationTests.REDIS_KEY),
-            @CacheEvict(value = SpringCompositeCacheMgrApplicationTests.REDIS_IDENTIFY_KEY, allEntries = true)})
+            @CacheEvict(REDIS_KEY),
+            @CacheEvict(value = REDIS_IDENTIFY_KEY, allEntries = true)})
     public void evictAll() {
     }
 }

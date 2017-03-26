@@ -33,11 +33,15 @@ import org.springframework.web.context.WebApplicationContext;
 public class SpringCompositeCacheMgrApplicationTests {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-    public static final DateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss:SSS");
-    public static final String REDIS_KEY = "redis-key";
+    
+	public static final DateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss:SSS");
+    
+	public static final String REDIS_KEY = "redis-key";
+	public static final String REDIS_IDENTIFY_KEY = "redis-identify-key";
+	
     public static final String EHCACHE_KEY = "ehcache-key";
-    public static final String REDIS_IDENTIFY_KEY = "redis-identify-key";
     public static final String EHCACHE_IDENTIFY_KEY = "ehcache-identify-key";
+    
     public static final int SLEEP_MILLIS = 300;
 	
 	@Autowired

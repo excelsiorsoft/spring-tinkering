@@ -38,7 +38,7 @@ public class TestConfig implements CachingConfigurer {
     @Bean
     @Override
     public CacheManager cacheManager() {
-        CompositeCacheManager compositeCacheManager = new CompositeCacheManager(ehCacheManager(), redisCacheManager());
+        CompositeCacheManager compositeCacheManager = new CompositeCacheManager(ehCacheManager(), redisCacheManager(jedisPoolConfig()));
         compositeCacheManager.setFallbackToNoOpCache(true);
         compositeCacheManager.afterPropertiesSet();
         return compositeCacheManager;
@@ -65,8 +65,9 @@ public class TestConfig implements CachingConfigurer {
     }
 
     @Bean
-    public CacheManager redisCacheManager() {
-        RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate());
+    public CacheManager redisCacheManager(JedisPoolConfig jedisPoolConfig) {
+        
+    	RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate(jedisPoolConfig));
         redisCacheManager.setUsePrefix(true);
         redisCacheManager.setDefaultExpiration(3600);
         return redisCacheManager;
@@ -74,18 +75,20 @@ public class TestConfig implements CachingConfigurer {
 
     @Bean
     public JedisPoolConfig jedisPoolConfig() {
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        
+    	JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxIdle(32);
         return jedisPoolConfig;
     }
 
     @Bean
-    public JedisConnectionFactory connectionFactory() {
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
+    public JedisConnectionFactory connectionFactory(JedisPoolConfig jedisPoolConfig) {
+        
+    	JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
         jedisConnectionFactory.setHostName("localhost");
         jedisConnectionFactory.setPort(6379);
         jedisConnectionFactory.setTimeout(5000);
-        jedisConnectionFactory.setPoolConfig(jedisPoolConfig());
+        jedisConnectionFactory.setPoolConfig(jedisPoolConfig/*jedisPoolConfig()*/);
         jedisConnectionFactory.setUsePool(true);
         jedisConnectionFactory.setDatabase(3);
         jedisConnectionFactory.afterPropertiesSet();
@@ -93,17 +96,17 @@ public class TestConfig implements CachingConfigurer {
     }
 
     @Bean
-    public StringRedisTemplate stringRedisTemplate() {
+    public StringRedisTemplate stringRedisTemplate(JedisConnectionFactory jedisConnectionFactory) {
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
-        stringRedisTemplate.setConnectionFactory(connectionFactory());
+        stringRedisTemplate.setConnectionFactory(jedisConnectionFactory/*connectionFactory()*/);
         stringRedisTemplate.afterPropertiesSet();
         return stringRedisTemplate;
     }
 
     @Bean
-    public RedisTemplate<Object, Object> redisTemplate() {
+    public RedisTemplate<Object, Object> redisTemplate(JedisPoolConfig jedisPoolConfig) {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(connectionFactory());
+        redisTemplate.setConnectionFactory(connectionFactory(jedisPoolConfig));
         Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
         
         ObjectMapper objectMapper = new ObjectMapper();
