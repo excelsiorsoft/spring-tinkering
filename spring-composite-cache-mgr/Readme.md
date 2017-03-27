@@ -10,4 +10,6 @@ Once Redis is unpacked, launch it with the default settings:
 
 You should see a screen similar to this:
 
+
 ![Redis server running](https://github.com/excelsiorsoft/spring-tinkering/blob/master/spring-composite-cache-mgr/doc/Redis.JPG)
+
