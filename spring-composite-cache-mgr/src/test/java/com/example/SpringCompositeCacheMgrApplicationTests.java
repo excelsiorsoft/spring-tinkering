@@ -1,7 +1,11 @@
 package com.example;
 
-
+import static com.example.RedisCacheService.REDIS_IDENTIFY_KEY;
+import static com.example.RedisCacheService.REDIS_KEY;
+import static com.example.EhCacheService.EHCACHE_IDENTIFY_KEY;
+import static com.example.EhCacheService.EHCACHE_KEY;
 import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 
@@ -36,11 +40,9 @@ public class SpringCompositeCacheMgrApplicationTests {
     
 	public static final DateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss:SSS");
     
-	public static final String REDIS_KEY = "redis-key";
-	public static final String REDIS_IDENTIFY_KEY = "redis-identify-key";
+
 	
-    public static final String EHCACHE_KEY = "ehcache-key";
-    public static final String EHCACHE_IDENTIFY_KEY = "ehcache-identify-key";
+
     
     public static final int SLEEP_MILLIS = 300;
 	
@@ -60,7 +62,7 @@ public class SpringCompositeCacheMgrApplicationTests {
 	@Test
 	public void applicationContextShouldBeInitialized() {	
 		
-		Assert.assertNotNull("RedisProperties is undefined...", webApplicationContext.getBeansOfType(RedisProperties.class));
+		Assert.assertNotNull("RedisProperties are undefined...", webApplicationContext.getBeansOfType(RedisProperties.class));
 		
 		Assert.assertNotNull(webApplicationContext);
 		for (String beanDefinitionNames : webApplicationContext.getBeanDefinitionNames()) {
@@ -85,15 +87,18 @@ public class SpringCompositeCacheMgrApplicationTests {
 
     @Test
     public void testEhCacheLoad() throws Exception {
-        Collection<String> cacheNames = ehCacheManager.getCacheNames();
-        logger.debug("cacheNames={}", cacheNames);
+    	
+    	Collection<String> cacheNames = ehCacheManager.getCacheNames();
+        logger.debug("ehcache cacheNames={}", cacheNames);
         Assert.assertThat(cacheNames, Matchers.containsInAnyOrder(EHCACHE_KEY, EHCACHE_IDENTIFY_KEY));
     }
 
+    
     @Test
     public void testRedisCacheLoad() throws Exception {
-        Collection<String> cacheNames = redisCacheManager.getCacheNames();
-        logger.debug("cacheNames={}", cacheNames);
+        
+    	Collection<String> cacheNames = redisCacheManager.getCacheNames();
+        logger.debug("redis cacheNames={}", cacheNames);
         Assert.assertThat(cacheNames, Matchers.contains(REDIS_KEY, REDIS_IDENTIFY_KEY));
     }
 

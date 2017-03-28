@@ -1,8 +1,8 @@
 package com.example;
 
 import static com.example.SpringCompositeCacheMgrApplicationTests.DATETIME_FORMAT;
-import static com.example.SpringCompositeCacheMgrApplicationTests.REDIS_IDENTIFY_KEY;
-import static com.example.SpringCompositeCacheMgrApplicationTests.REDIS_KEY;
+
+
 
 import java.util.Date;
 
@@ -14,6 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class RedisCacheService {
 
+	
+	public static final String REDIS_KEY = "redis-key";
+	public static final String REDIS_IDENTIFY_KEY = "redis-identify-key";
+	
+	
     private int executeTime = 0;
 
     public void clearExecuteTime() {
