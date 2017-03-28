@@ -19,25 +19,25 @@ public class RedisCacheService {
 	public static final String REDIS_IDENTIFY_KEY = "redis-identify-key";
 	
 	
-    private int executeTime = 0;
+    private int timesExecuted = 0;
 
-    public void clearExecuteTime() {
-        executeTime = 0;
+    public void clearTimesExecuted() {
+        timesExecuted = 0;
     }
 
-    public int getExecuteTime() {
-        return executeTime;
+    public int getTimesExecuted() {
+        return timesExecuted;
     }
 
     @Cacheable(REDIS_KEY)
     public String get() {
-        executeTime++;
+        timesExecuted++;
         return DATETIME_FORMAT.format(new Date());
     }
 
     @Cacheable(value = REDIS_IDENTIFY_KEY, key = "#identify")
     public String get(Long identify) {
-        executeTime++;
+        timesExecuted++;
         return DATETIME_FORMAT.format(new Date()) + "&identify:" + identify;
     }
 

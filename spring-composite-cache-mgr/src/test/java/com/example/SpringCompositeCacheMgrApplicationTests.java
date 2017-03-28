@@ -33,7 +33,7 @@ import org.springframework.web.context.WebApplicationContext;
 //@WebAppConfiguration
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
+//@AutoConfigureMockMvc
 public class SpringCompositeCacheMgrApplicationTests {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -46,7 +46,7 @@ public class SpringCompositeCacheMgrApplicationTests {
     
     public static final int SLEEP_MILLIS = 300;
 	
-	@Autowired
+/*	@Autowired
 	private WebApplicationContext webApplicationContext;
 	
 	
@@ -55,11 +55,24 @@ public class SpringCompositeCacheMgrApplicationTests {
 
     @Before
     public void createMockMVC() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)./*addFilter(new GlobalFilter())*/
+    	logger.debug("creating...");
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).addFilter(new GlobalFilter())
                       build();
+    }*/
+    
+    @Before
+    public void setUp() throws Exception {
+        redisCacheService.evictAll();
+        ehCacheService.evictAll();
     }
 
-	@Test
+    @After
+    public void tearDown() throws Exception {
+        redisCacheService.evictAll();
+        ehCacheService.evictAll();
+    }
+
+/*	@Test
 	public void applicationContextShouldBeInitialized() {	
 		
 		Assert.assertNotNull("RedisProperties are undefined...", webApplicationContext.getBeansOfType(RedisProperties.class));
@@ -68,7 +81,7 @@ public class SpringCompositeCacheMgrApplicationTests {
 		for (String beanDefinitionNames : webApplicationContext.getBeanDefinitionNames()) {
 			Assert.assertNotNull(webApplicationContext.getBean(beanDefinitionNames));
 		}
-	}
+	}*/
 	
 	@Autowired
     StringRedisTemplate stringRedisTemplate;
@@ -89,7 +102,7 @@ public class SpringCompositeCacheMgrApplicationTests {
     public void testEhCacheLoad() throws Exception {
     	
     	Collection<String> cacheNames = ehCacheManager.getCacheNames();
-        logger.debug("ehcache cacheNames={}", cacheNames);
+        logger.debug("ehcache cacheNames={}\n", cacheNames);
         Assert.assertThat(cacheNames, Matchers.containsInAnyOrder(EHCACHE_KEY, EHCACHE_IDENTIFY_KEY));
     }
 
@@ -98,58 +111,53 @@ public class SpringCompositeCacheMgrApplicationTests {
     public void testRedisCacheLoad() throws Exception {
         
     	Collection<String> cacheNames = redisCacheManager.getCacheNames();
-        logger.debug("redis cacheNames={}", cacheNames);
+        logger.debug("redis cacheNames={}\n", cacheNames);
         Assert.assertThat(cacheNames, Matchers.contains(REDIS_KEY, REDIS_IDENTIFY_KEY));
     }
 
-    @Before
-    public void setUp() throws Exception {
-        redisCacheService.evictAll();
-        ehCacheService.evictAll();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        redisCacheService.evictAll();
-        ehCacheService.evictAll();
-    }
+   
 
     @Test
     public void testRedis() throws Exception {
-        logger.debug("start test redis");
-        redisCacheService.clearExecuteTime();
+        
+    	logger.debug("start test redis");
+        redisCacheService.clearTimesExecuted();
+        
         String currentDateStringBefore = redisCacheService.get();
         logger.debug("currentDateStringBefore={}", currentDateStringBefore);
         Thread.currentThread().join(SLEEP_MILLIS);
         String currentDateStringAfter = redisCacheService.get();
         logger.debug("currentDateStringAfter={}", currentDateStringAfter);
         Assert.assertEquals(currentDateStringAfter, currentDateStringBefore);
-        int executeTime = redisCacheService.getExecuteTime();
-        logger.debug("executeTime={}", executeTime);
-        Assert.assertEquals(executeTime, 1);
-        logger.debug("finish test redis");
+        int timesExecuted = redisCacheService.getTimesExecuted();
+        logger.debug("timesExecuted={}", timesExecuted);
+        Assert.assertEquals(timesExecuted, 1);
+        logger.debug("finish test redis\n");
     }
 
     @Test
     public void testEhcache() throws Exception {
-        logger.debug("start test ehcache");
-        ehCacheService.clearExecuteTime();
+        
+    	logger.debug("start test ehcache");
+        ehCacheService.clearTimesExecuted();
         String currentDateStringBefore = ehCacheService.get();
         logger.debug("currentDateStringBefore={}", currentDateStringBefore);
         Thread.currentThread().join(SLEEP_MILLIS);
         String currentDateStringAfter = ehCacheService.get();
         logger.debug("currentDateStringAfter={}", currentDateStringAfter);
         Assert.assertEquals(currentDateStringAfter, currentDateStringBefore);
-        int executeTime = ehCacheService.getExecuteTime();
-        logger.debug("executeTime={}", executeTime);
-        Assert.assertEquals(executeTime, 1);
-        logger.debug("finish test ehcache");
+        int timesExecuted = ehCacheService.getTimesExecuted();
+        logger.debug("timesExecuted={}", timesExecuted);
+        Assert.assertEquals(timesExecuted, 1);
+        logger.debug("finish test ehcache\n");
     }
 
     @Test
     public void testRedisIdentify() throws Exception {
-        logger.debug("start test redis identify");
-        redisCacheService.clearExecuteTime();
+        
+    	logger.debug("start test redis identify");
+        redisCacheService.clearTimesExecuted();
+        
         Long identify1 = 1L;
         Long identify2 = 2L;
 
@@ -169,17 +177,17 @@ public class SpringCompositeCacheMgrApplicationTests {
         logger.debug("value2After={}", value2After);
         Assert.assertEquals(value2Before, value2After);
 
-        int executeTime = redisCacheService.getExecuteTime();
-        logger.debug("executeTime={}", executeTime);
-        Assert.assertEquals(executeTime, 2);
+        int timesExecuted = redisCacheService.getTimesExecuted();
+        logger.debug("timesExecuted={}", timesExecuted);
+        Assert.assertEquals(timesExecuted, 2);
 
-        logger.debug("finish test redis identify");
+        logger.debug("finish test redis identify\n");
     }
 
     @Test
     public void testEhcacheIdentify() throws Exception {
         logger.debug("start test ehcache identify");
-        ehCacheService.clearExecuteTime();
+        ehCacheService.clearTimesExecuted();
         Long identify1 = 1L;
         Long identify2 = 2L;
 
@@ -199,11 +207,11 @@ public class SpringCompositeCacheMgrApplicationTests {
         logger.debug("value2After={}", value2After);
         Assert.assertEquals(value2Before, value2After);
 
-        int executeTime = ehCacheService.getExecuteTime();
-        logger.debug("executeTime={}", executeTime);
-        Assert.assertEquals(executeTime, 2);
+        int timesExecuted = ehCacheService.getTimesExecuted();
+        logger.debug("timesExecuted={}", timesExecuted);
+        Assert.assertEquals(timesExecuted, 2);
 
-        logger.debug("finish test ehcache identify");
+        logger.debug("finish test ehcache identify\n");
     }
 
 }

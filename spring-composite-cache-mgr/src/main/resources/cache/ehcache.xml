@@ -30,7 +30,7 @@
             diskPersistent="false"
             diskExpiryThreadIntervalSeconds="120"
             memoryStoreEvictionPolicy="LRU"/>
-    <cache name="ehcache-key"
+    <cache name="ehcache-no-identifier"
            maxElementsInMemory="10000"
            eternal="false"
            timeToIdleSeconds="3600"
@@ -38,7 +38,7 @@
            overflowToDisk="false"
            diskPersistent="false"
            diskExpiryThreadIntervalSeconds="1"/>
-    <cache name="ehcache-identify-key"
+    <cache name="ehcache-identifier"
            maxElementsInMemory="10000"
            eternal="false"
            timeToIdleSeconds="3600"

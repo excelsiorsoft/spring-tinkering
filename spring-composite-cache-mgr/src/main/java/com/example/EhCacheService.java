@@ -1,5 +1,7 @@
 package com.example;
 
+import static com.example.SpringCompositeCacheMgrApplicationTests.DATETIME_FORMAT;
+
 import java.util.Date;
 
 import org.springframework.cache.annotation.CacheEvict;
@@ -12,29 +14,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class EhCacheService {
 
-	public static final String EHCACHE_KEY = "ehcache-key";
-	public static final String EHCACHE_IDENTIFY_KEY = "ehcache-identify-key";
+	public static final String EHCACHE_KEY = "ehcache-no-identifier";
+	public static final String EHCACHE_IDENTIFY_KEY = "ehcache-identifier";
 	
-    private int executeTime = 0;
+    private int timesExecuted = 0;
 
-    public void clearExecuteTime() {
-        executeTime = 0;
+    public void clearTimesExecuted() {
+        timesExecuted = 0;
     }
 
-    public int getExecuteTime() {
-        return executeTime;
+    public int getTimesExecuted() {
+        return timesExecuted;
     }
 
     @Cacheable(EHCACHE_KEY)
     public String get() {
-        executeTime++;
-        return SpringCompositeCacheMgrApplicationTests.DATETIME_FORMAT.format(new Date());
+        timesExecuted++;
+        return DATETIME_FORMAT.format(new Date());
     }
 
-    @Cacheable(value = EHCACHE_IDENTIFY_KEY, key = "#identify")
-    public String get(Long identify) {
-        executeTime++;
-        return SpringCompositeCacheMgrApplicationTests.DATETIME_FORMAT.format(new Date()) + "&identify:" + identify;
+    @Cacheable(value = EHCACHE_IDENTIFY_KEY, key = "#identifier")
+    public String get(Long identifier) {
+        timesExecuted++;
+        return DATETIME_FORMAT.format(new Date()) + "&identifier:" + identifier;
     }
 
     @Caching(evict = {
