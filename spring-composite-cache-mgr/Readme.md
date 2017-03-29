@@ -24,34 +24,39 @@ You should see a screen similar to this:
 # To Run
 
 Running ***`SpringCompositeCacheMgrApplicationTests.java`*** as JUnit test will result in the following:
+`
+21:53:50.613 [main] INFO  c.e.SpringCompositeCacheMgrApplicationTests - Started SpringCompositeCacheMgrApplicationTests in 6.298 seconds (JVM running for 7.516)
+21:53:51.038 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - redis cacheNames=[redis-key, redis-identify-key]
 
-    08:46:38.516 [main] INFO  c.e.SpringCompositeCacheMgrApplicationTests - Started SpringCompositeCacheMgrApplicationTests in 13.433 seconds (JVM running for 16.376)
-    08:46:40.629 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - cacheNames=[redis-key, redis-identify-key]
-    08:46:41.015 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - start test ehcache identify
-    08:46:41.116 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value1Before=2017-03-28T08:46:41:084&identify:1
-    08:46:41.118 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value2Before=2017-03-28T08:46:41:118&identify:2
-    08:46:41.421 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value1After=2017-03-28T08:46:41:084&identify:1
-    08:46:41.421 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value2After=2017-03-28T08:46:41:118&identify:2
-    08:46:41.421 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - executeTime=2
-    08:46:41.421 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - finish test ehcache identify
-    08:46:41.441 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - start test redis identify
-    08:46:41.499 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value1Before=2017-03-28T08:46:41:450&identify:1
-    08:46:41.501 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value2Before=2017-03-28T08:46:41:500&identify:2
-    08:46:42.318 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value1After=2017-03-28T08:46:41:450&identify:1
-    08:46:42.410 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value2After=2017-03-28T08:46:41:500&identify:2
-    08:46:42.410 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - executeTime=2
-    08:46:42.410 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - finish test redis identify
-    08:46:42.427 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - start test redis
-    08:46:42.429 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - currentDateStringBefore=2017-03-28T08:46:42:428
-    08:46:42.746 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - currentDateStringAfter=2017-03-28T08:46:42:428
-    08:46:42.746 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - executeTime=1
-    08:46:42.746 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - finish test redis
-    08:46:42.765 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - cacheNames=[ehcache-identify-key, ehcache-key]
-    08:46:42.920 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - start test ehcache
-    08:46:42.921 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - currentDateStringBefore=2017-03-28T08:46:42:921
-    08:46:43.227 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - currentDateStringAfter=2017-03-28T08:46:42:921
-    08:46:43.227 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - executeTime=1
-    08:46:43.227 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - finish test ehcache
-    08:46:43.801 [Thread-7] INFO  o.s.c.e.EhCacheManagerFactoryBean - Shutting down EhCache CacheManager
-    
+21:53:51.078 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - start test ehcache identify
+21:53:51.141 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value1Before=2017-03-28T21:53:51:139&identifier:1
+21:53:51.141 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value2Before=2017-03-28T21:53:51:141&identifier:2
+21:53:51.446 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value1After=2017-03-28T21:53:51:139&identifier:1
+21:53:51.446 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value2After=2017-03-28T21:53:51:141&identifier:2
+21:53:51.446 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - timesExecuted=2
+21:53:51.446 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - finish test ehcache identify
 
+21:53:51.460 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - start test redis identify
+21:53:51.491 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value1Before=2017-03-28T21:53:51:468&identify:1
+21:53:51.500 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value2Before=2017-03-28T21:53:51:492&identify:2
+21:53:51.863 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value1After=2017-03-28T21:53:51:468&identify:1
+21:53:51.867 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - value2After=2017-03-28T21:53:51:492&identify:2
+21:53:51.867 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - timesExecuted=2
+21:53:51.868 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - finish test redis identify
+
+21:53:51.883 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - start test redis
+21:53:51.888 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - currentDateStringBefore=2017-03-28T21:53:51:884
+21:53:52.191 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - currentDateStringAfter=2017-03-28T21:53:51:884
+21:53:52.191 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - timesExecuted=1
+21:53:52.191 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - finish test redis
+
+21:53:52.208 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - ehcache cacheNames=[ehcache-no-identifier, ehcache-identifier]
+
+21:53:52.222 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - start test ehcache
+21:53:52.223 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - currentDateStringBefore=2017-03-28T21:53:52:223
+21:53:52.523 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - currentDateStringAfter=2017-03-28T21:53:52:223
+21:53:52.523 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - timesExecuted=1
+21:53:52.523 [main] DEBUG c.e.SpringCompositeCacheMgrApplicationTests - finish test ehcache
+
+21:53:52.626 [Thread-6] INFO  o.s.c.e.EhCacheManagerFactoryBean - Shutting down EhCache CacheManager
+`
