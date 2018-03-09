@@ -17,6 +17,8 @@ local.properties
 Ideas*.docx
 target/
 *.lnk
+**/.sts4-cache/*
+**/target/*
 
 
 
