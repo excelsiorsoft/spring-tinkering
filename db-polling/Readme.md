@@ -9,3 +9,13 @@ On startup schema is created and the table is populated:
 2018-03-09 15:46:03.272  INFO 4908 --- [           main] o.s.jdbc.datasource.init.ScriptUtils     : Executed SQL script from URL [file:/C:/Users/senya/source/spring-tinkering/db-polling/target/classes/schema.sql] in 7 ms.
 2018-03-09 15:46:03.273  INFO 4908 --- [           main] o.s.jdbc.datasource.init.ScriptUtils     : Executing SQL script from URL [file:/C:/Users/senya/source/spring-tinkering/db-polling/target/classes/data.sql]
 2018-03-09 15:46:03.297  INFO 4908 --- [           main] o.s.jdbc.datasource.init.ScriptUtils     : Executed SQL script from URL [file:/C:/Users/senya/source/spring-tinkering/db-polling/target/classes/data.sql] in 24 ms.
+
+To access H2 console via web, point your browser to: http://localhost:8080/h2-console/
+
+Important: JDBC URL string should correspond to what's seen in the above logs via internal Spring Boot configuration: 
+
+jdbc:h2:mem:testdb
+
+Querying the table returns: 
+
+
