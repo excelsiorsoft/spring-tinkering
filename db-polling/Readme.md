@@ -1,4 +1,4 @@
-# Genesis
+# Polling H2 DB
 
 This project is inspired by [the article](https://examples.javacodegeeks.com/enterprise-java/spring/integration/spring-integration-database-polling-example/)
 
