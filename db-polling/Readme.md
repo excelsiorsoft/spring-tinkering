@@ -20,8 +20,8 @@ Important: JDBC URL string should correspond to what's seen in the above logs vi
 Querying the table returns: 
 ![](https://github.com/excelsiorsoft/spring-tinkering/blob/master/db-polling/query.PNG)
 
-For an *OLD* way of configuring Spring Integration in Spring Boot, see [DbpollerApplication.java](https://github.com/excelsiorsoft/spring-tinkering/blob/master/db-polling/src/main/java/com/example/DbpollerApplication.java)
+For an *OLD* way of configuring Spring Integration in Spring Boot via XML, see [DbpollerApplication.java](https://github.com/excelsiorsoft/spring-tinkering/blob/master/db-polling/src/main/java/com/example/DbpollerApplication.java)
 
-*NEW* way of doing it, see  [DbPollerSimpleApplication.java.java](https://github.com/excelsiorsoft/spring-tinkering/blob/master/db-polling/src/main/java/com/example/DbPollerSimpleApplication.java)
+For a *NEW* way of doing it, via annotations, see  [DbPollerSimpleApplication.java.java](https://github.com/excelsiorsoft/spring-tinkering/blob/master/db-polling/src/main/java/com/example/DbPollerSimpleApplication.java)
 
 
