@@ -15,6 +15,10 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.scheduling.support.PeriodicTrigger;
 import org.springframework.transaction.PlatformTransactionManager;
 
+
+/**
+ * Inspired by https://stackoverflow.com/questions/27247013/jdbc-spring-integration-with-annotations
+ */
 @SpringBootApplication
 public class DbPollerSimpleApplication {
 
