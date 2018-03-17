@@ -6,9 +6,11 @@
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-	   http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+	   http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-5.0.xsd
 	   http://www.springframework.org/schema/integration/jdbc http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc.xsd
 	   http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+ 
+ <!-- https://stackoverflow.com/questions/49201689/enable-spring-project-nature-in-sts-4-to-fix-xml-schema-problems/49206873?noredirect=1#comment85464925_49206873-->
 
 	<int:channel id="fromdb"/>
 	<int:service-activator input-channel="fromdb" ref="jdbcMessageHandler" />
